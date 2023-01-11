@@ -1,8 +1,7 @@
 import tmi from "tmi.js"; // some documentation here: https://github.com/tmijs/docs/tree/gh-pages/_posts/v1.4.2
 import type { ChatUserstate } from "tmi.js";
-import { ACCOUNT, IDENTIFIER } from "./configs.js";
+import { ACCOUNT } from "./configs.js";
 
-// create a client with selected options
 const client = new tmi.Client(ACCOUNT);
 
 async function onMessage(
@@ -11,8 +10,12 @@ async function onMessage(
   message: string,
   self: boolean
 ) {
-  // ignore message if it is is the bot's message or it doesn't start with the modifier
-  if (self || !message.startsWith(IDENTIFIER)) return;
+  if (
+    self ||
+    !message.startsWith("!") ||
+    typeof ACCOUNT["identity"] === "undefined"
+  )
+    return;
   message = message.slice(1); // remove the identifier
 
   const words = message.match(/\S+/g) ?? []; // get words with regex
@@ -21,12 +24,7 @@ async function onMessage(
 
   const isMod = userstate.mod || userstate.username === channel.slice(1); // is true if the message sender is a mod
 
-  console.log(`* got: command - "${command}", arguments: "${args}"`);
-
   let reply = "";
-
-  // -----------------------------------------------------------------------------------------
-  // change the reply variable to a string if you want to send it to chat
 
   switch (command) {
     case "ping":
@@ -38,20 +36,36 @@ async function onMessage(
     case "say":
       reply = args.join(" ");
       break;
+    case "discord":
+      reply = "Join our DISCORD Server! => https://discord.gg/dAeR3KeKBc";
+      break;
     case "amiamod":
       reply = isMod
         ? `Yes, @${userstate["display-name"]}. You are a mod!`
         : `No, @${userstate["display-name"]}.`;
       break;
+    case "entwicklergesöff":
+      reply = "🧉🧉🧉🧉🧉🧉🧉🧉🧉🧉";
+      break;
+    case "birthday":
+      reply = `Happy Birthday 🍰🎂🎉🎊`;
+      if (args.length >= 1) {
+        reply = `Happy Birthday to ${args[0]} 🍰🎂🎉🎊`;
+      }
+      break;
+    case "applaus":
+      reply = "👏🏼👏👏🏻👏🏽👏🏾👏🏿";
+      if (args.length >= 1) {
+        reply = "👏🏼👏👏🏻👏🏽👏🏾👏🏿 to " + args[0];
+      }
+      break;
+    default:
+      // reply = "Ohne Heu kann das beste Pferd nicht furzen.";
+      reply = "nein! doch! oh! 🦄";
+      break;
   }
 
-  // -----------------------------------------------------------------------------------------
-
-  // don't send the reply if it's an empty string or the bot account is anonymous
-  if (reply === "" || typeof ACCOUNT["identity"] === "undefined") return;
-
   await client.say(channel, reply);
-  console.log(`* replied with "${reply}"`);
 }
 
 // register event handlers
