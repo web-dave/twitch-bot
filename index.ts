@@ -59,6 +59,10 @@ async function onMessage(
         reply = "👏🏼👏👏🏻👏🏽👏🏾👏🏿 to " + args[0];
       }
       break;
+    case "👊🏼":
+      reply = "🎆";
+
+      break;
     default:
       // reply = "Ohne Heu kann das beste Pferd nicht furzen.";
       reply = "nein! doch! oh! 🦄";
