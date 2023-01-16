@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "start:sub": "nodemon dist/sub.js"
   },
   "author": "Luj8n",
   "dependencies": {

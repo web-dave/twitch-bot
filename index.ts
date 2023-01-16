@@ -44,6 +44,7 @@ async function onMessage(
         ? `Yes, @${userstate["display-name"]}. You are a mod!`
         : `No, @${userstate["display-name"]}.`;
       break;
+    case "matcha":
     case "entwicklergesöff":
       reply = "🧉🧉🧉🧉🧉🧉🧉🧉🧉🧉";
       break;
@@ -61,6 +62,19 @@ async function onMessage(
       break;
     case "👊🏼":
       reply = "🎆";
+
+      break;
+    case "help":
+      reply = `available commands are: 
+      !ping, 
+      !pong, 
+      !say [words], 
+      !discord, 
+      !birthday [user],
+      !applaus [user],
+      !👊🏼,
+      !help
+      `;
 
       break;
     default:
