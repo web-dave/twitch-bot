@@ -20,7 +20,13 @@ async function onMessage(
 
   const words = message.match(/\S+/g) ?? []; // get words with regex
   const command = (words[0] ?? "").toLowerCase(); // get the command and make it lowercase
-  const args = words.slice(1); // get the arguments
+  let args = words.slice(1).map((word) => {
+    if (word.startsWith("/")) {
+      word = word.replace(/\//g, "");
+    }
+
+    return word;
+  }); // get the arguments
 
   const isMod = userstate.mod || userstate.username === channel.slice(1); // is true if the message sender is a mod
 
