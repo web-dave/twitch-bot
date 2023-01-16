@@ -52,8 +52,6 @@ client.on("connected", (address: string, port: number) => {
   setInterval(() => {
     const plsSub = async () => {
       const reply = `Please consider subscribing to this channel 😉`;
-      //   const reply = `Active users: ${Object.keys(chatters)}`;
-      console.log(reply);
       await client.say(channel, reply);
     };
     plsSub();

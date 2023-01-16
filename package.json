@@ -4,10 +4,10 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
+    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\" \"nodemon dist/sub.js\"",
     "build": "tsc",
     "start": "node dist/index.js",
-    "start:sub": "nodemon dist/sub.js"
+    "start:sub": "node dist/sub.js"
   },
   "author": "Luj8n",
   "dependencies": {
