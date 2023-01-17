@@ -55,7 +55,7 @@ client.on("connected", (address: string, port: number) => {
       await client.say(channel, reply);
     };
     plsSub();
-  }, 1200000);
+  }, 1800000);
 });
 
 client.on("message", onMessage);
