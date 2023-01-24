@@ -70,6 +70,10 @@ async function onMessage(
       reply = "🎆";
 
       break;
+    case "bett":
+      reply = "Gute Nacht 🛌🏼💤";
+
+      break;
     case "help":
       reply = `available commands are: 
       !ping, 
